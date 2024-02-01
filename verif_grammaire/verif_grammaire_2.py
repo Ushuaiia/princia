@@ -9,6 +9,20 @@ def check_grammar(text):
     """ Vérifie la grammaire d'un texte et retourne les erreurs. """
     return tool.check(text)
 
+def find_index(text, keyword):
+    """Trouve l'indice de début du mot-clé dans le texte."""
+    try:
+        return text.index(keyword)
+    except ValueError:
+        return None
+
+def remove_specific_phrase(text, phrase):
+    """Supprime une phrase spécifique du texte."""
+    return text.replace(phrase, "")
+
+# Phrase à exclure
+exclude_phrase = "You are an AI assistant that helps people find information and you always answer in French."
+
 # Lire le fichier JSONL
 file_path = '/mnt/data/transformed_dataset.jsonl'
 data = []
@@ -20,28 +34,40 @@ with open(file_path, 'r') as file:
 error_count_df = pd.DataFrame(columns=['line_number', 'error_count'])
 correction_suggestions_df = pd.DataFrame(columns=['line_number', 'original_text', 'suggestion', 'rule_id', 'message'])
 
-# Définir les intervalles de texte à vérifier (exemple)
+# Boucler sur le dataset et les intervalles
 for i, entry in enumerate(data):
-    # Supposons que vous avez déterminé les indices pour extraire le texte
-    start_index = ...  # Début de l'intervalle
-    end_index = ...    # Fin de l'intervalle
+    text = remove_specific_phrase(entry['prompt'], exclude_phrase)
+    
+    # Exemple d'intervalles basés sur des mots-clés
+    keyword1_index = find_index(text, "user")
+    keyword2_index = find_index(text, "assistant")
+    keyword3_index = find_index(text, "chosen")
+    keyword4_index = find_index(text, "rejected")
 
-    text_to_check = entry['prompt'][start_index:end_index]  # Exemple d'extraction
-    matches = check_grammar(text_to_check)
+    intervals = []
+    if keyword1_index is not None and keyword2_index is not None:
+        intervals.append((keyword1_index + len("user"), keyword2_index))
+    if keyword3_index is not None and keyword4_index is not None:
+        intervals.append((keyword3_index + len("chosen"), keyword4_index))
 
-    # Ajout des résultats dans les DataFrames
-    error_count_df = pd.concat([error_count_df, pd.DataFrame({'line_number': [i], 'error_count': [len(matches)]})], ignore_index=True)
-    for match in matches:
-        correction_suggestions_df = pd.concat([correction_suggestions_df, pd.DataFrame({
-            'line_number': [i],
-            'original_text': [text_to_check],
-            'suggestion': [match.replacements[0] if match.replacements else ''],
-            'rule_id': [match.ruleId],
-            'message': [match.message]
-        })], ignore_index=True)
+    total_errors = 0
+    for start, end in intervals:
+        text_to_check = text[start:end]
+        matches = check_grammar(text_to_check)
+        total_errors += len(matches)
+
+        for match in matches:
+            correction_suggestions_df = pd.concat([correction_suggestions_df, pd.DataFrame({
+                'line_number': [i],
+                'original_text': [text_to_check],
+                'suggestion': [match.replacements[0] if match.replacements else ''],
+                'rule_id': [match.ruleId],
+                'message': [match.message]
+            })], ignore_index=True)
+
+    error_count_df = pd.concat([error_count_df, pd.DataFrame({'line_number': [i], 'error_count': [total_errors]})], ignore_index=True)
 
 # Enregistrement dans un fichier Excel
 with pd.ExcelWriter('/mnt/data/grammar_check_report.xlsx') as writer:
     error_count_df.to_excel(writer, sheet_name='nombre_d_erreurs', index=False)
     correction_suggestions_df.to_excel(writer, sheet_name='propositions_correction', index=False)
-
