@@ -39,15 +39,30 @@ for i, entry in enumerate(data):
     text = remove_specific_phrase(entry['prompt'], exclude_phrase)
     
     # Exemple d'intervalles basés sur des mots-clés
-    keyword1_index = find_index(text, "user")
-    keyword2_index = find_index(text, "assistant")
-    keyword3_index = find_index(text, "chosen")
-    keyword4_index = find_index(text, "rejected")
+    keyword1_index = find_index(text, "<|im_start|>system")
+    keyword2_index = find_index(text, "<|im_end|>")
+    keyword3_index = find_index(text, "<|im_start|> user")
+    keyword4_index = find_index(text, "<|im_end|>")
+    keyword5_index = find_index(text, "<|im_start|>  assistant")
+    keyword6_index = find_index(text, "user")
+    keyword7_index = find_index(text, "assistant")
+    keyword8_index = find_index(text, "chosen")
+    keyword9_index = find_index(text, "<|im_end|>")
+    keyword10_index = find_index(text, "rejected")
+    keyword11_index = find_index(text, "<|im_end|>")
 
     intervals = []
     if keyword1_index is not None and keyword2_index is not None:
         intervals.append((keyword1_index + len("user"), keyword2_index))
     if keyword3_index is not None and keyword4_index is not None:
+        intervals.append((keyword3_index + len("chosen"), keyword4_index))
+    if keyword5_index is not None and keyword6_index is not None:
+        intervals.append((keyword3_index + len("chosen"), keyword4_index))
+    if keyword7_index is not None and keyword8_index is not None:
+        intervals.append((keyword3_index + len("chosen"), keyword4_index))
+    if keyword9_index is not None and keyword10_index is not None:
+        intervals.append((keyword3_index + len("chosen"), keyword4_index))
+    if keyword10_index is not None and keyword11_index is not None:
         intervals.append((keyword3_index + len("chosen"), keyword4_index))
 
     total_errors = 0
