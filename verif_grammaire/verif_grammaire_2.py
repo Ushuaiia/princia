@@ -24,7 +24,7 @@ def remove_specific_phrase(text, phrase):
 exclude_phrase = "You are an AI assistant that helps people find information and you always answer in French."
 
 # Lire le fichier JSONL
-file_path = '/mnt/data/transformed_dataset.jsonl'
+file_path = '/home/brian/Documents/python/princia/verif_grammaire/transformed_dataset.jsonl'
 data = []
 with open(file_path, 'r') as file:
     for line in file:
@@ -83,6 +83,6 @@ for i, entry in enumerate(data):
     error_count_df = pd.concat([error_count_df, pd.DataFrame({'line_number': [i], 'error_count': [total_errors]})], ignore_index=True)
 
 # Enregistrement dans un fichier Excel
-with pd.ExcelWriter('/mnt/data/grammar_check_report.xlsx') as writer:
+with pd.ExcelWriter('/home/brian/Documents/python/princia/verif_grammaire/grammar_check_report.xlsx') as writer:
     error_count_df.to_excel(writer, sheet_name='nombre_d_erreurs', index=False)
     correction_suggestions_df.to_excel(writer, sheet_name='propositions_correction', index=False)
