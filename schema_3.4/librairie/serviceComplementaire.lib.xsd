@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://purl.org/dc/elements/1.1/" schemaLocation="simpledc.xsd"/>
+	<xs:include schemaLocation="commun.xsd"/>
+	
+<!-- ###
+	   # Elément constitutifs du service complémentaire
+	   ### -->
+	
+	<!-- NumeroCerfa -->
+	<xs:element name="NumeroCerfa" type="xs:string"/>
+	
+	<!-- AutreNumero -->
+	<xs:element name="AutreNumero" type="xs:string"/>
+	
+	<!-- PivotLocal -->
+	<xs:element name="PivotLocal" type="xs:string"/>
+	
+	<!-- FranceConnect -->
+	<xs:element name="FranceConnect" type="xs:boolean" default="false"/>
+	
+	<!-- ServiceEnLigneAlternatif -->
+	<xs:element name="ServiceEnLigneAlternatif">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Titre" minOccurs="0" type="xs:string"/>
+			</xs:sequence>
+			<xs:attribute name="type" type="xs:string" use="required"/>
+			<xs:attribute name="ID" type="xs:string" use="required"/>
+			<xs:attribute name="audience" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+		
+	<!-- FicheLiee -->
+	<xs:element name="FicheLiee">
+		<xs:annotation>
+			<xs:documentation>fiches appelant ce service</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Titre" minOccurs="0" type="xs:string"/>
+				<xs:element name="Dossier" minOccurs="0">
+					<xs:complexType mixed="true">
+						<xs:attribute name="ID" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="type" type="xs:string" use="required"/>
+			<xs:attribute name="ID" type="xs:string" use="required"/>
+			<xs:attribute name="audience" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- Valeur de référence -->
+	<xs:element name="ValeurRfr"> 
+		<xs:complexType>
+			<xs:attribute name="valeur" type="xs:string" use="required"/>
+			<xs:attribute name="titre" type="xs:string" use="optional"/>
+			<xs:attribute name="unite" type="xs:string" use="optional"/>
+			<xs:attribute name="ID" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- Liste de valeurs de références historisées -->
+	<xs:element name="ValeurRfrHisto">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Periode" minOccurs="1" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="ValeurRfr"/>
+						</xs:sequence>
+						<xs:attribute name="dateDebut" type="xs:date" use="required"/>
+						<xs:attribute name="dateFin" type="xs:date" use="optional"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="ID" type="xs:string" use="optional"/>
+			<xs:attribute name="titre" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+			
+</xs:schema>
