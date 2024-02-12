@@ -1,0 +1,41 @@
+prompt,chosen,rejected
+"user
+What exactly is the Big Bang theory?","assistant
+The Big Bang theory is a scientific explanation about the early development of the Universe.","assistant
+This is an alternative but not chosen response."
+"user
+Who first proposed the Big Bang theory?","assistant
+The Big Bang theory was first proposed by Belgian priest and astronomer Georges Lemaître in 1927.","assistant
+This is an alternative but not chosen response."
+"user
+Is the Big Bang a theory or a hypothesis?","assistant
+The Big Bang is a well-established scientific theory supported by a wide range of evidence.","assistant
+This is an alternative but not chosen response."
+"user
+How does the Big Bang theory explain the expansion of the Universe?","assistant
+The Big Bang theory explains that the Universe has been expanding from a hot, dense state since its inception.","assistant
+This is an alternative but not chosen response."
+"user
+What is cosmic microwave background radiation?","assistant
+Cosmic microwave background radiation is a remnant from the early Universe, often considered as a 'snapshot' of the Universe just 380,000 years after the Big Bang.","assistant
+This is an alternative but not chosen response."
+"user
+Why is the Big Bang theory important?","assistant
+The Big Bang theory is crucial as it provides the most comprehensive explanation for the array of astronomical observations made so far.","assistant
+This is an alternative but not chosen response."
+"user
+What preceded the Big Bang?","assistant
+Current scientific understanding is that it's not meaningful to discuss 'before' the Big Bang, as time itself started with the Big Bang.","assistant
+This is an alternative but not chosen response."
+"user
+How was the Big Bang theory developed?","assistant
+The Big Bang theory was developed through the work of multiple scientists over many years, building upon the understanding of cosmic expansion.","assistant
+This is an alternative but not chosen response."
+"user
+What are the main components of the Universe according to the Big Bang theory?","assistant
+According to the Big Bang theory, the Universe primarily consists of dark energy, dark matter, and normal matter.","assistant
+This is an alternative but not chosen response."
+"user
+How do galaxies fit into the Big Bang theory?","assistant
+Galaxies are thought to have formed from density fluctuations in the early Universe after the Big Bang.","assistant
+This is an alternative but not chosen response."
