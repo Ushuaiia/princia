@@ -1,0 +1,16 @@
+1708956283075	geckodriver	INFO	Listening on 127.0.0.1:41155
+1708956283825	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ng" "--remote-debugging-port" "46353" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileEzicwC"
+Gtk-Message: 17:04:44.043: Failed to load module "xapp-gtk3-module"
+Gtk-Message: 17:04:44.043: Failed to load module "appmenu-gtk-module"
+Gtk-Message: 17:04:44.044: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+Gtk-Message: 17:04:44.044: Failed to load module "appmenu-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1708956370587	geckodriver	INFO	Listening on 127.0.0.1:55243
+1708956371379	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ng" "--remote-debugging-port" "48633" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileiOgZ5c"
+Gtk-Message: 17:06:11.583: Failed to load module "xapp-gtk3-module"
+Gtk-Message: 17:06:11.583: Failed to load module "appmenu-gtk-module"
+Gtk-Message: 17:06:11.583: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+Gtk-Message: 17:06:11.584: Failed to load module "appmenu-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
